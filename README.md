@@ -9,7 +9,7 @@ This project exists to answer one question concretely: **what is nginx actually 
 - Listens on a single port and accepts raw TCP connections directly via `net`
 - Parses HTTP/1.1 requests from raw bytes — method, path, headers, body — with no parsing library
 - Serves static files from disk with correct `Content-Type`, path-traversal protection, and proper 404 handling
-- Reverse-proxies requests matching `/api` to one of three backend servers
+- Reverse-proxies requests matching `/api` to one of three backend servers (each returning a live JSON API status response)
 - Load-balances across those backends with round-robin selection
 - Is entirely driven by a small nginx-style config file (`config/nginx-clone.conf`) — routes, ports, and upstreams are data, not hardcoded logic
 
@@ -80,9 +80,10 @@ Then:
 ```bash
 curl http://localhost:8080/          # served by the static file handler
 curl -I http://localhost:8080/api    # forwarded to a backend — check X-Served-By header
+curl http://localhost:8080/api       # returns JSON response from rotating backend server
 ```
 
-Reload `/api` a few times and watch `X-Served-By` rotate: `Server A → Server B → Server C → Server A …`
+Reload `/api` a few times in your browser or via `curl` and watch the JSON payload (`"server": "Server A"`) and `X-Served-By` header rotate across the backends: `Server A → Server B → Server C → Server A …`
 
 ## Benchmark results
 

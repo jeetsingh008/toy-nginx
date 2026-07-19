@@ -1,4 +1,4 @@
-# mini-nginx
+# nginx-from-scratch(toy-reverse-proxy)
 
 A reverse proxy, round-robin load balancer, and static file server — built from raw TCP sockets in Node.js, with no Express and no built-in `http` module. HTTP requests are parsed by hand, byte by byte, the same way a framework does it invisibly.
 

@@ -1,8 +1,3 @@
-// requestParser.js
-// Parses raw HTTP/1.1 request text (headers section) into a structured object.
-// Body handling: caller is responsible for buffering according to Content-Length
-// before calling this — this function assumes headerSection + body are both present.
-
 function parseRequest(raw) {
   const headerEndIndex = raw.indexOf('\r\n\r\n');
   const headerSection = headerEndIndex === -1 ? raw : raw.slice(0, headerEndIndex);

@@ -1,7 +1,3 @@
-// responseBuilder.js
-// Shared response-writing logic so every server (static, backend, proxy)
-// constructs HTTP responses the same way.
-
 const STATUS_TEXT = {
   200: 'OK',
   403: 'Forbidden',

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>mini-nginx</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main>
+    <h1>mini-nginx</h1>
+    <p>
+      A reverse proxy, load balancer, and static file server built from raw
+      TCP sockets in Node.js — no Express, no <code>http</code> module.
+    </p>
+    <p>This page was served by the static file handler, routed via the config's <code>location /</code> block.</p>
+    <p>
+      Try <a href="/api">/api</a> to see the request routed instead to one
+      of three backend servers via the reverse proxy + round-robin load
+      balancer — reload it a few times and check the
+      <code>X-Served-By</code> response header to watch it rotate.
+    </p>
+  </main>
+</body>
+</html>

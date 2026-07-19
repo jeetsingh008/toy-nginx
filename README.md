@@ -17,8 +17,8 @@ This project exists to answer one question concretely: **what is nginx actually 
 
 ```
                         ┌─────────────────────┐
-   client  ──HTTP──▶    │   proxy (port 8080)  │
-                        │  reads nginx-clone.conf │
+   client  ──HTTP──▶       proxy (port 8080)  
+                         reads nginx-clone.conf
                         └──────────┬───────────┘
                                    │
                     matches request path against

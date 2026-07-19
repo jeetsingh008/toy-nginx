@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: nginx-from-scratch
+    name: toy-nginx
     env: node
     plan: free
     buildCommand: npm install

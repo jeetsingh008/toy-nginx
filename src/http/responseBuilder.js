@@ -14,10 +14,6 @@ function sendResponse(socket, statusCode, contentType, body, extraHeaders = {}) 
     `HTTP/1.1 ${statusCode} ${statusText}`,
     `Content-Type: ${contentType}`,
     `Content-Length: ${bodyBuffer.length}`,
-    // We always close the socket after one response (no keep-alive support
-    // yet), so we must say so explicitly — HTTP/1.1 defaults to persistent
-    // connections, and clients that assume keep-alive is available will see
-    // an ECONNRESET instead of a clean close if we don't declare this.
     `Connection: close`,
     ...Object.entries(extraHeaders).map(([k, v]) => `${k}: ${v}`),
   ];

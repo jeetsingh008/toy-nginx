@@ -1,4 +1,4 @@
-# Case study: nginx-from-scratch
+# Case study: toy-nginx
 
 ## The problem I set out to solve
 
@@ -38,5 +38,5 @@ The load-balanced version handles the same request volume faster, because it's s
 - Understanding of core infrastructure concepts (reverse proxying, load balancing, config-driven routing) that transfer directly to backend and DevOps-adjacent work
 - Following through a project to a deployed, working, benchmarked state — not just a tutorial-following demo
 
-**Repo:** [link to GitHub repo]
-**Live demo:** [link once deployed]
+**Repo:** https://github.com/jeetsingh008/toy-nginx
+**Live demo:** https://nginx-from-scratch.onrender.com/

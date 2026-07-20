@@ -1,23 +1,28 @@
 const net = require('net');
-const { sendResponse } = require('../http/responseBuilder');
 
-function forwardToUpstream(target, requestData, clientSocket, onDone) {
+function forwardToUpstream(target, requestData, onComplete, onError) {
+  const chunks = [];
+  let settled = false; // guards against 'error' AND 'close' both firing for one failed connection
+
   const upstreamSocket = net.connect(target.port, target.host, () => {
     upstreamSocket.write(requestData);
   });
 
   upstreamSocket.on('data', (chunk) => {
-    clientSocket.write(chunk);
+    chunks.push(chunk);
   });
 
   upstreamSocket.on('close', () => {
-    onDone();
+    if (settled) return; // already handled via 'error' below
+    settled = true;
+    onComplete(Buffer.concat(chunks));
   });
 
   upstreamSocket.on('error', (err) => {
+    if (settled) return;
+    settled = true;
     console.error(`[proxy] upstream ${target.host}:${target.port} error:`, err.message);
-    sendResponse(clientSocket, 502, 'text/plain', 'Bad Gateway');
-    onDone();
+    onError(err);
   });
 }
 

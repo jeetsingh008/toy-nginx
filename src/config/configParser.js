@@ -45,10 +45,11 @@ function parseConfig(filePath) {
       const block = {};
       i++;
       while (lines[i] !== '}') {
-        if (i >= lines.length) throw new Error(`Config error: unclosed "location ${locPath}" block`);
         const [key, value] = lines[i].split(' ');
         if (key === 'root') block.root = value;
         if (key === 'proxy_pass') block.proxyPass = value;
+        if (key === 'cache') block.cache = value === 'on';
+        if (key === 'cache_ttl') block.cacheTtl = parseInt(value, 10);
         i++;
       }
       config.locations.push({ path: locPath, ...block });
